@@ -4,9 +4,12 @@ import NotFound from './NotFound';
 
 const Gallery = props => {
     return (
-        <div className='gallery'>
-            <Photo />
-            <NotFound />
+        <div class="photo-container">
+          <h2>Results</h2>
+            <ul>
+                <Photo />
+                <NotFound />
+            </ul>
         </div>
     );
 };

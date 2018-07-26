@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './styles.css';
 import Header from './components/Header';
 import PhotoContainer from './components/PhotoContainer';
+import './css/styles.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <Header />
         <PhotoContainer />
       </div>
