@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch}  from 'react-router-dom';
 import Header from './components/Header';
 import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
+import {apiKey, apiSecret} from './Config.js'
 import './css/styles.css';
 
 class App extends Component {
