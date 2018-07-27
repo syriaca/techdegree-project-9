@@ -1,6 +1,5 @@
 import React from 'react';
 import Photo from './Photo';
-import NotFound from './NotFound';
 
 const Gallery = props => {
     return (
@@ -8,7 +7,6 @@ const Gallery = props => {
           <h2>Results</h2>
             <ul>
                 <Photo />
-                <NotFound />
             </ul>
         </div>
     );
