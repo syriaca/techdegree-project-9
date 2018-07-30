@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch}  from 'react-router-dom';
 import Header from './components/Header';
-import PhotoContainer from './components/PhotoContainer';
+import Home from './components/Home';
 import NotFound from './components/NotFound';
 import axios from 'axios';
 import apiKey from './Config.js'
@@ -37,20 +37,20 @@ class App extends Component {
 
   handleSearchButton = (e) => {
     this.getImages();
+    this.setState({
+      
+    });
   }
 
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <Header click={this.handleSearchButton} />
+          <Header click={this.handleSearchButton} data={this.state.photos}/>
             {
               (this.state.loading) ? <p>Now Loading...</p> :             
               <Switch>
-                <Route exact path="/" render={() => <PhotoContainer data={this.state.photos} />} />
-                <Route path="/cats" render={() => <PhotoContainer data={this.state.photos}/>} />
-                <Route path="/dogs" render={() => <PhotoContainer data={this.state.photos}/>} />
-                <Route path="/computers" render={() => <PhotoContainer data={this.state.photos}/>} />
+                <Route exact path="/" component={Home} />
                 <Route render={NotFound} />
               </Switch>
             }

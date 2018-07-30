@@ -6,7 +6,7 @@ const Header = (props) => {
     return(
         <header className='header'>        
             <SearchForm />
-            <Navigation click={props.click} />        
+            <Navigation click={props.click} data={props.data} />        
         </header>
     );
 };
