@@ -4,7 +4,7 @@ import Header from './components/Header';
 import PhotoContainer from './components/PhotoContainer';
 import NotFound from './components/NotFound';
 import axios from 'axios';
-import {apiKey, apiSecret} from './Config.js'
+import apiKey from './Config.js'
 import './css/styles.css';
 
 class App extends Component {
@@ -15,18 +15,16 @@ class App extends Component {
       photos: [],
       loading: true
     };
+    this.handleSearchButton = this.handleSearchButton.bind(this);
   }
 
   componentDidMount() {
     this.getImages();
   }
 
-// https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e353d76704d31c88446431e60d72aedf&tags=sunsets&per_page=16&format=json&nojsoncallback=1
-
-  getImages = () => {
-    axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=sunsets&per_page=16&format=json&nojsoncallback=1`)
+  getImages = (query = 'cats') => {
+    axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=16&format=json&nojsoncallback=1`)
     .then(response => {
-      console.log(response.data);
       this.setState({
         photos: response.data.photos.photo,
         loading: false
@@ -37,18 +35,25 @@ class App extends Component {
     });
   }
 
+  handleSearchButton = (e) => {
+    this.getImages();
+  }
+
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <Header />
-          <Switch>
-            <Route exact path="/" component={PhotoContainer} />
-            <Route path="/cats" component={PhotoContainer} />
-            <Route path="/dogs" component={PhotoContainer} />
-            <Route path="/computers" component={PhotoContainer} />
-            <Route component={NotFound} />
-          </Switch>
+          <Header click={this.handleSearchButton} />
+            {
+              (this.state.loading) ? <p>Now Loading...</p> :             
+              <Switch>
+                <Route exact path="/" render={() => <PhotoContainer data={this.state.photos} />} />
+                <Route path="/cats" render={() => <PhotoContainer data={this.state.photos}/>} />
+                <Route path="/dogs" render={() => <PhotoContainer data={this.state.photos}/>} />
+                <Route path="/computers" render={() => <PhotoContainer data={this.state.photos}/>} />
+                <Route render={NotFound} />
+              </Switch>
+            }
         </div>
       </BrowserRouter>
     );
