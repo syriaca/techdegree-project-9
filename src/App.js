@@ -15,14 +15,13 @@ class App extends Component {
       photos: [],
       loading: true
     };
-    this.handleSearchButton = this.handleSearchButton.bind(this);
   }
 
   componentDidMount() {
-    this.getImages();
+    this.getPhotos();
   }
 
-  getImages = (query = 'cats') => {
+  getPhotos = (query = 'cats') => {
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=16&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState({
@@ -35,18 +34,11 @@ class App extends Component {
     });
   }
 
-  handleSearchButton = (e) => {
-    this.getImages();
-    this.setState({
-      
-    });
-  }
-
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <Header click={this.handleSearchButton} data={this.state.photos}/>
+          <Header search={this.getPhotos} data={this.state.photos}/>
             {
               (this.state.loading) ? <p>Now Loading...</p> :             
               <Switch>
