@@ -42,7 +42,7 @@ input {
   width: 100%;
   margin-bottom: 1em;
 }
-.main-nav a {
+.main-nav ul a {
   display: block;
   background: #438bbd;
   border-radius: 4px;
@@ -114,4 +114,14 @@ input {
     min-width: 100px;
     width: auto;
   }
+}
+
+.main-nav .search-link:focus,
+.main-nav .search-link:hover,
+.main-nav .search-link:active {
+  background: none;
+}
+
+.main-nav .search-link.active {
+  display: none;
 }

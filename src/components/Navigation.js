@@ -1,18 +1,19 @@
 import React from 'react';
-import { NavLink, Route} from 'react-router-dom';
-import PhotoContainer from './PhotoContainer';
+import { NavLink } from 'react-router-dom';
 
-const Navigation = (props) => {
+const Navigation = props => {
     return(
         <nav className="main-nav">
             <ul>
-                <li><NavLink to={'/cats'} onClick={() => props.search('cats')}>Cats</NavLink></li>
-                <li><NavLink to='/dogs' onClick={() => props.search('dogs')}>Dogs</NavLink></li>
-                <li><NavLink to='/computers'onClick={() => props.search('computers')}>Computers</NavLink></li>
+                <li><NavLink to='/opeth' onClick={() => props.onSearch('opeth')}>Opeth</NavLink></li>
+                <li><NavLink to='/sybreed' onClick={() => props.onSearch('sybreed')}>Sybreed</NavLink></li>
+                <li><NavLink to='/lost-in-kiev' onClick={() => props.onSearch('lost in kiev')}>Lost In Kiev</NavLink></li>
+                <li><NavLink to='/god-is-an-astronaut' onClick={() => props.onSearch('God is an astronaut')}>God Is An Astronaut</NavLink></li>
+                <li><NavLink to='/long-distance-calling' onClick={() => props.onSearch('Long distance calling')}>Long Distance Calling</NavLink></li>
             </ul>
-            <Route path="/cats" render={() => <PhotoContainer data={props.data}/>} />
-            <Route path="/dogs" render={() => <PhotoContainer data={props.data}/>} />
-            <Route path="/computers" render={() => <PhotoContainer data={props.data}/>} />
+            <NavLink onClick={props.showSearchBar} to='/search' className="search-link">
+                Go to search page Show search bar
+            </NavLink>
         </nav>
     );
 }

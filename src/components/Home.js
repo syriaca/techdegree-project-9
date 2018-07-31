@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = props => {
+const Home = () => {
     return (
         <div className="not-found">
             <h3>Welcome to flickr search app</h3>
