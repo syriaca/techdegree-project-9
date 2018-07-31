@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import PhotoContainer from './components/PhotoContainer';
-import SearchForm from './components/SearchForm';
 
 import axios from 'axios';
 import apiKey from './Config.js'
